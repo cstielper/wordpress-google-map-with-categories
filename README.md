@@ -150,4 +150,4 @@ You will need to set some variables at the top of the [area-map.js](area-map.js)
 4. Set the path to where your map markers are stored in your WordPress theme. The naming convention for map markers is by the taxonomy id number. So, if you had a "Landmark Type" with an id of "10," the path the javascript will output is: /THE_PATH_YOU_ENTERED/cat-10.png. You will need to have an appropriately named icon in your directory for each "Landmark Type" that is being used.
 
 ## Sample CSS
-A sample SASS file has been provided to get you started.
+A [sample SASS file](sample-styles.scss) has been provided to get you started.
