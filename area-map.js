@@ -45,6 +45,14 @@ document.addEventListener('DOMContentLoaded', function () {
 function buildMap(data) {
 	bounds = new google.maps.LatLngBounds();
 
+	var mapStyles =[{
+		featureType: "poi",
+		elementType: "labels",
+		stylers: [{
+			visibility: "off" }
+		]}
+	];
+
 	map = new google.maps.Map(document.getElementById('map-canvas'), {
 		mapTypeControl: false,
 		scrollwheel: false,
@@ -54,6 +62,7 @@ function buildMap(data) {
 		zoomControlOptions: {
 			position: google.maps.ControlPosition.RIGHT_BOTTOM
 		},
+		styles: mapStyles,
 	});
 
 	for(var i = 0; i < data.length; i++) {
