@@ -1,5 +1,5 @@
 # Wordpress Google Map With Categories
-Blah blah blah
+Follow the steps below to set up an area map that uses the Google Maps API to plot landmarks (a custom post type in WordPress) with categories (a custom taxonomy that is assigned to the custom post type) that allow you to toggle map markers on/off.
 
 ## Install Required plugins
 NOTE: The included [JSON file](acf-export-landmark-info.json) to import into Advanced Custom fields is for use with the pro version of the plugin.
@@ -10,9 +10,10 @@ NOTE: The included [JSON file](acf-export-landmark-info.json) to import into Adv
 4. [Radio Buttons for Taxonomies](https://wordpress.org/plugins/radio-buttons-for-taxonomies/)
 
 ## Create the custom post type and taxonomy
-Add this to your theme's functions.php file. Don't forget to prefix your function names and to flush your permalinks.
+Add this to your theme's functions.php file. Don't forget to prefix your function names and to flush your permalinks:
 
 ~~~~
+<?php
 function YOUR_FUNCTION_PREFIX_create_custom_posts() {
 	$labels = array(
 		'name'                  => _x( 'Area Landmarks', 'Post Type General Name', 'text_domain' ),
@@ -104,32 +105,49 @@ function YOUR_FUNCTION_PREFIX_create_custom_taxonomies() {
 
 }
 add_action( 'init', 'YOUR_FUNCTION_PREFIX_create_custom_taxonomies', 0 );
+?>
 ~~~~
 
 ## Setup plugin options
 Import the [JSON file](acf-export-landmark-info.json) into Advanced Custom Fields
 
-Add this to your functions.php file to remove the "None" option for Radio Buttons for Taxonomies
+Add this to your functions.php file to remove the "None" option for Radio Buttons for Taxonomies:
 ~~~~
+<?php
 // Remove option for no type from radio button for taxonomies plugin
 add_filter('radio-buttons-for-taxonomies-no-term-landmark_types', '__return_FALSE' );
+?>
 ~~~~
 
 ## Output HTML markup/javascript
-Add this to your theme's functions.php file. Don't forget to prefix your function name.
+Add this to your theme's functions.php file. Don't forget to prefix your function name:
 ~~~~
+<?php 
 function YOUR_FUNCTION_PREFIX_area_map() { ?>
 	<div id="map-wrapper">
 		<div id="map-canvas"></div>
 		<button id="reset-map">Reset</button>
 	</div>
 	<?php wp_enqueue_script( string $handle, string $src = false, array $deps = array(), string|bool|null $ver = false, bool $in_footer = false );
-}
+} ?>
 ~~~~
 
 You can use this to call the function in your page template:
 ~~~~
+<?php
 if(function_exists('YOUR_FUNCTION_PREFIX_area_map')) {
   YOUR_FUNCTION_PREFIX_area_map();
 }
+?>
 ~~~~
+
+## Javascript implementation
+You will need to set some variables at the top of the [area-map.js](area-map.js) file:
+
+1. Add your google maps api key (**var apiKey**)
+2. Set the path to use in order to query the REST API for the "landmarks" custom post type (**var markersFeed**)
+3. Set the path to use in order to query the REST API for the "landmark_types" custom taxonomy (**var catsFeed**). If you do not want to use the category navigation, you can set "**var addCats**" to "false"
+4. Set the path to where your map markers are stored in your WordPress theme. The naming convention for map markers is by the taxonomy id number. So, if you had a "Landmark Type" with an id of "10," the path the javascript will output is: /THE_PATH_YOU_ENTERED/cat-10.png. You will need to have an appropriately named icon in your directory for each "Landmark Type" that is being used.
+
+## Sample CSS
+A sample SASS file has been provided to get you started.
