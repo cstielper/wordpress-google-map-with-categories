@@ -2,11 +2,12 @@
 Blah blah blah
 
 ## Install Required plugins
-NOTE: The included JSON file to import into Advanced Custom fields is for use with the pro version of the plugin.
+NOTE: The included [JSON file](acf-export-landmark-info.json) to import into Advanced Custom fields is for use with the pro version of the plugin.
 
 1. [WordPress REST API (Version 2)](https://wordpress.org/plugins/rest-api/)
 2. [Advanced Custom Fields](https://www.advancedcustomfields.com/)
 3. [ACF to Rest API (Version 2)](https://wordpress.org/plugins/acf-to-rest-api/)
+4. [Radio Buttons for Taxonomies](https://wordpress.org/plugins/radio-buttons-for-taxonomies/)
 
 ## Create the custom post type and taxonomy
 Add this to your theme's functions.php file. Don't forget to prefix your function names and to flush your permalinks.
@@ -105,7 +106,14 @@ function YOUR_FUNCTION_PREFIX_create_custom_taxonomies() {
 add_action( 'init', 'YOUR_FUNCTION_PREFIX_create_custom_taxonomies', 0 );
 ~~~~
 
-## Import the JSON file into Advanced Custom Fields
+## Setup plugin options
+Import the [JSON file](acf-export-landmark-info.json) into Advanced Custom Fields
+
+Add this to your functions.php file to remove the "None" option for Radio Buttons for Taxonomies
+~~~~
+// Remove option for no type from radio button for taxonomies plugin
+add_filter('radio-buttons-for-taxonomies-no-term-landmark_types', '__return_FALSE' );
+~~~~
 
 ## Output HTML markup to be used by the javascript
 Add this to your theme's functions.php file. Don't forget to prefix your function name.
