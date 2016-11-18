@@ -1,7 +1,9 @@
 # Wordpress Google Map With Categories
 Blah blah blah
 
-## Required plugins
+## Install Required plugins
+NOTE: The included JSON file to import into Advanced Custom fields is for use with the pro version of the plugin.
+
 1. [WordPress REST API (Version 2)](https://wordpress.org/plugins/rest-api/)
 2. [Advanced Custom Fields](https://www.advancedcustomfields.com/)
 3. [ACF to Rest API (Version 2)](https://wordpress.org/plugins/acf-to-rest-api/)
@@ -103,7 +105,9 @@ function YOUR_FUNCTION_PREFIX_create_custom_taxonomies() {
 add_action( 'init', 'YOUR_FUNCTION_PREFIX_create_custom_taxonomies', 0 );
 ~~~~
 
-## Output HTML markup to be used by the Javascript
+## Import the JSON file into Advanced Custom Fields
+
+## Output HTML markup to be used by the javascript
 Add this to your theme's functions.php file. Don't forget to prefix your function name.
 ~~~~
 function YOUR_FUNCTION_PREFIX_area_map() { ?>
