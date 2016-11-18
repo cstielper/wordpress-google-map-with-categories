@@ -154,6 +154,9 @@ function buildCats(data, map) {
 	function catClick(href, ul) {
 		href.addEventListener('click', function(event) {
 			event.preventDefault();
+			if(infowindow) {
+				infowindow.close();
+			}
 			var cat = (this.parentElement.getAttribute('id'));
 			
 			for(var i = 0; i < locations.length; i++) {
@@ -173,9 +176,6 @@ function buildCats(data, map) {
 
 			this.classList.add('active');
 			resetBtn.classList.add('active');
-			if(infowindow) {
-				infowindow.close();
-			}
 		});
 	}
 
