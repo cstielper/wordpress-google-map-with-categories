@@ -119,7 +119,7 @@ function buildMap(data) {
 	function openInfoWindow(marker) {
 		marker.addListener('click', function() {
 			infowindow = new google.maps.InfoWindow();
-			if (currentInfoWindow != null) {
+			if (currentInfoWindow !== null) {
 			 	currentInfoWindow.close();
 			}
 			currentInfoWindow = infowindow; 
