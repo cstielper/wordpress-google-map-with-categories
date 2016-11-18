@@ -115,7 +115,7 @@ Add this to your functions.php file to remove the "None" option for Radio Button
 add_filter('radio-buttons-for-taxonomies-no-term-landmark_types', '__return_FALSE' );
 ~~~~
 
-## Output HTML markup to be used by the javascript
+## Output HTML markup/javascript
 Add this to your theme's functions.php file. Don't forget to prefix your function name.
 ~~~~
 function YOUR_FUNCTION_PREFIX_area_map() { ?>
