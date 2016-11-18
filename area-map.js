@@ -17,6 +17,7 @@ var catIconPath = '/THE_PATH_TO_THE_DIRECTORY_WHERE_YOUR_MAP_ICONS_ARE_STORED';
 var map;
 var bounds;
 var infowindow;
+var currentInfoWindow = null;
 var landmarksObj;
 var catsObj;
 var markers = [];
@@ -118,6 +119,10 @@ function buildMap(data) {
 	function openInfoWindow(marker) {
 		marker.addListener('click', function() {
 			infowindow = new google.maps.InfoWindow();
+			if (currentInfoWindow != null) {
+			 	currentInfoWindow.close();
+			}
+			currentInfoWindow = infowindow; 
 			infowindow.setContent(marker.html);
 			infowindow.open(map, marker);
 		});
