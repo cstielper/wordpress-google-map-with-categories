@@ -120,7 +120,7 @@ add_filter('radio-buttons-for-taxonomies-no-term-landmark_types', '__return_FALS
 ~~~~
 
 ## Output HTML markup/javascript
-Add this to your theme's functions.php file. Don't forget to prefix your function name:
+Add this to your theme's functions.php file. You will need to set up the wp_enqueue_script function to work with your site's theme. Don't forget to prefix your function name:
 ~~~~
 <?php 
 function YOUR_FUNCTION_PREFIX_area_map() { ?>
