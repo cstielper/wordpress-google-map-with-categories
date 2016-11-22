@@ -6,7 +6,7 @@ var myMap = 'map-canvas';
 var apiKey = 'ADD_YOUR_GOOGLE_MAPS_API_KEY';
 
 // Paths to JSON data
-var markersFeed = '/THE_PATH_YOU_WANT_TO_USE/wp-json/wp/v2/area_landmarks/?filter[posts_per_page]=-1';
+var markersFeed = '/THE_PATH_YOU_WANT_TO_USE/wp-json/wp/v2/area_landmarks?per_page=100';
 
 // Specify whether you want to add category controls for landmarks to the map (true/false).
 // If you do, add the path to your category feed and the path to your image directory where your icons are stored
