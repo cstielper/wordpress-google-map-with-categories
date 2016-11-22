@@ -185,16 +185,18 @@ function buildCats(data, map) {
 	}
 
 	for(var i = 0; i < data.length; i++) {
-		var listItem = document.createElement('li');
-		listItem.id = 'cat-' + data[i].id;
-		listItem.classList.add(data[i].slug);
-		var listItemHref = document.createElement('a');
-		listItemHref.href = '#';
-		listItemHref.innerText = data[i].name;
-		listItem.appendChild(listItemHref);
-		catNavUl.appendChild(listItem);
+		if(data[i].count > 0) {
+			var listItem = document.createElement('li');
+			listItem.id = 'cat-' + data[i].id;
+			listItem.classList.add(data[i].slug);
+			var listItemHref = document.createElement('a');
+			listItemHref.href = '#';
+			listItemHref.innerText = data[i].name;
+			listItem.appendChild(listItemHref);
+			catNavUl.appendChild(listItem);
 
-		catClick(listItemHref, catNavUl);
+			catClick(listItemHref, catNavUl);
+		}
 	}
 }
 
