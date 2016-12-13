@@ -109,7 +109,7 @@ add_action( 'init', 'YOUR_FUNCTION_PREFIX_create_custom_taxonomies', 0 );
 ~~~~
 
 ## Setup plugin options
-Import the [JSON file](acf-export-landmark-info.json) into Advanced Custom Fields
+Import the [JSON file](acf-export.json) into Advanced Custom Fields
 
 Add this to your functions.php file to remove the "None" option for Radio Buttons for Taxonomies:
 ~~~~
