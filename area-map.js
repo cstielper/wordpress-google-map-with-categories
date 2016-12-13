@@ -9,15 +9,21 @@ var apiKey = 'ADD_YOUR_GOOGLE_MAPS_API_KEY';
 var markersFeed = '/THE_PATH_YOU_WANT_TO_USE/wp-json/wp/v2/area_landmarks?per_page=100';
 
 // Specify whether you want to add category controls for landmarks to the map (true/false).
-// If you do, add the path to your category feed and the path to your image directory where your icons are stored
 var addCats = true;
 var catsFeed = '/THE_PATH_YOU_WANT_TO_USE/wp-json/wp/v2/landmark_types';
-var catIconPath = '/THE_PATH_TO_THE_DIRECTORY_WHERE_YOUR_MAP_ICONS_ARE_STORED';
+
+// Specify whether you want to add a static community marker to the map (true/false).
+var addCommMarker = true;
+var locationOptionsFeed = '/THE_PATH_YOU_WANT_TO_USE/wp-json/acf/v2/options';
+
+// Set the path to the icons in your theme
+var iconPath = '/THE_PATH_TO_THE_DIRECTORY_WHERE_YOUR_MAP_ICONS_ARE_STORED';
 
 var map;
+var commMarker;
 var bounds;
 var infowindow;
-var currentInfoWindow = null;
+var currentInfoWindow = null; 
 var landmarksObj;
 var catsObj;
 var markers = [];
@@ -35,6 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			lang = 'en';
 		}
 
+		/*var cluster_js_file = document.createElement('script');
+		cluster_js_file.type = 'text/javascript';
+		cluster_js_file.src = 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js';
+		document.getElementsByTagName('body')[0].appendChild(cluster_js_file);*/
+
 		var map_js_file = document.createElement('script');
 		map_js_file.type = 'text/javascript';
 		map_js_file.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&callback=callback&language=' + lang;
@@ -43,15 +54,49 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Build the map, push to the markers array for using "bounds," push to the locations array for use with category navigation
-function buildMap(data) {
+function buildMap(data, location) {
+	//console.log(data);
 	bounds = new google.maps.LatLngBounds();
 
-	var mapStyles =[{
-		featureType: "poi",
-		elementType: "labels",
-		stylers: [{
-			visibility: "off" }
-		]}
+	// If "addCommMarker" is true, add a static marker to the map for our community
+	function addCommunityMarker(lat, lng) {
+		commMarker = new google.maps.Marker({
+			position: {lat: lat, lng: lng},
+			map: map,
+			zIndex: 1000,
+			icon: iconPath + 'static-comm-marker.png'
+		});
+	}
+
+	if(addCommMarker) {
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				var staticLocationObj = JSON.parse(xhr.responseText);
+				var lat = Number(staticLocationObj.acf.latitude);
+				var lng = Number(staticLocationObj.acf.longitude);
+				addCommunityMarker(lat, lng);
+			}
+		};
+
+		xhr.open('GET', location, true);
+		xhr.send();
+	}
+
+	var mapStyles =[
+		{
+			featureType: "poi",
+			elementType: "labels",
+			stylers: [{
+				visibility: "off"
+			}]
+		}, {
+			featureType: 'transit',
+			elementType: 'labels',
+			stylers: [{
+				visibility: "off"
+			}]
+		}
 	];
 
 	map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -129,7 +174,7 @@ function buildMap(data) {
 	}
 
 	for(var j = 0; j < locations.length; j++) {
-		var image = catIconPath + locations[j][9] + '.png';
+		var image = iconPath + locations[j][9] + '.png';
 		var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(locations[j][2], locations[j][3]),
 			map: map,
@@ -141,6 +186,8 @@ function buildMap(data) {
 
 		openInfoWindow(marker);
 	}
+
+	//var markerCluster = new MarkerClusterer(map, markers, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
 	map.fitBounds(bounds);
 }
@@ -181,6 +228,7 @@ function buildCats(data, map) {
 
 			this.classList.add('active');
 			resetBtn.classList.add('active');
+			
 		});
 	}
 
@@ -207,7 +255,7 @@ function initMap(feed) {
 		if (xhr.readyState === 4 && xhr.status === 200) {
 			landmarksObj = JSON.parse(xhr.responseText);
 			document.getElementById('map-canvas').innerHTML = '';
-			buildMap(landmarksObj);
+			buildMap(landmarksObj, locationOptionsFeed);
 		} else {
 			document.getElementById('map-canvas').innerHTML = 'Error Loading Data';
 		}
@@ -235,7 +283,7 @@ function initCats(feed) {
 // Callback function called after Google Maps API loads that makes calls to fetch our landmark and category data
 function callback() {
 	initMap(markersFeed);
-	if(addCats === true) {
+	if(addCats) {
 		initCats(catsFeed);
 	}
 }
