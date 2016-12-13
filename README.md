@@ -5,7 +5,7 @@ Follow the steps below to set up an area map that uses the Google Maps API to pl
 NOTE: The included [JSON file](acf-export-landmark-info.json) to import into Advanced Custom fields is for use with the pro version of the plugin.
 
 1. [WordPress REST API (Version 2)](https://wordpress.org/plugins/rest-api/)
-2. [Advanced Custom Fields](https://www.advancedcustomfields.com/)
+2. [Advanced Custom Fields](https://www.advancedcustomfields.com/) (As of WP 4.7, this is no longer needed)
 3. [ACF to Rest API (Version 2)](https://wordpress.org/plugins/acf-to-rest-api/)
 4. [Radio Buttons for Taxonomies](https://wordpress.org/plugins/radio-buttons-for-taxonomies/)
 
@@ -147,7 +147,8 @@ You will need to set some variables at the top of the [area-map.js](area-map.js)
 1. Add your google maps api key (**var apiKey**)
 2. Set the path to use in order to query the REST API for the "landmarks" custom post type (**var markersFeed**)
 3. Set the path to use in order to query the REST API for the "landmark_types" custom taxonomy (**var catsFeed**). If you do not want to use the category navigation, you can set "**var addCats**" to "false"
-4. Set the path to where your map markers are stored in your WordPress theme. The naming convention for map markers is by the taxonomy id number. So, if you had a "Landmark Type" with an id of "10," the path the javascript will output is: */THE_PATH_YOU_ENTERED/cat-10.png*. You will need to have an appropriately named icon in your directory for each "Landmark Type" that is being used.
+3. Set the path to use in order to query the REST API for the static community marker options (**var locationOptionsFeed**). If you do not want to a static marker, you can set "**var addCommMarker**" to "false"
+4. Set the path to where your map markers are stored in your WordPress theme. The naming convention for the category map markers is by the taxonomy id number. So, if you had a "Landmark Type" with an id of "10," the path the javascript will output is: */THE_PATH_YOU_ENTERED/cat-10.png*. The static property marker should be placed in the same directory and should be placed in the same directory and named: "static-comm-marker.png". You will need to have an appropriately named icon in your directory for each "Landmark Type" that is being used.
 
 ## Sample CSS
 A [sample SASS file](sample-styles.scss) has been provided to get you started.
