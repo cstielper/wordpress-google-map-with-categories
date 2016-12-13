@@ -1,7 +1,7 @@
 # Wordpress Google Map With Categories
 Follow the steps below to set up an area map that uses the Google Maps API to plot landmarks (a custom post type in WordPress) with categories (a custom taxonomy that is assigned to the custom post type) that allow you to toggle map markers on/off.
 
-## Install Required plugins
+## Install Required Plugins
 NOTE: The included [JSON file](acf-export.json) to import into Advanced Custom fields is for use with the pro version of the plugin.
 
 1. [WordPress REST API (Version 2)](https://wordpress.org/plugins/rest-api/) (As of WP 4.7, this is no longer needed)
@@ -9,7 +9,7 @@ NOTE: The included [JSON file](acf-export.json) to import into Advanced Custom f
 3. [ACF to Rest API (Version 2)](https://wordpress.org/plugins/acf-to-rest-api/)
 4. [Radio Buttons for Taxonomies](https://wordpress.org/plugins/radio-buttons-for-taxonomies/)
 
-## Create the custom post type and taxonomy
+## Create the Custom Post Type and Taxonomy
 Add this to your theme's functions.php file. Don't forget to prefix your function names and to flush your permalinks:
 
 ~~~~
@@ -108,7 +108,7 @@ add_action( 'init', 'YOUR_FUNCTION_PREFIX_create_custom_taxonomies', 0 );
 ?>
 ~~~~
 
-## Setup plugin options
+## Setup Plugin Options
 ### Advanced Custom Fields
 Import the [JSON file](acf-export.json) into Advanced Custom Fields.
 
@@ -144,7 +144,7 @@ add_filter('radio-buttons-for-taxonomies-no-term-landmark_types', '__return_FALS
 ?>
 ~~~~
 
-## Output HTML markup/javascript
+## Output HTML Markup/Javascript
 Add this to your theme's functions.php file. You will need to set up the wp_enqueue_script function to work with your site's theme. Don't forget to prefix your function name:
 ~~~~
 <?php 
@@ -166,7 +166,7 @@ if(function_exists('YOUR_FUNCTION_PREFIX_area_map')) {
 ?>
 ~~~~
 
-## Javascript implementation
+## Javascript Implementation
 You will need to set some variables at the top of the [area-map.js](area-map.js) file:
 
 1. Add your google maps api key (**var apiKey**)
