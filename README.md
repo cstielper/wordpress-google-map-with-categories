@@ -109,6 +109,7 @@ add_action( 'init', 'YOUR_FUNCTION_PREFIX_create_custom_taxonomies', 0 );
 ~~~~
 
 ## Setup plugin options
+### Advanced Custom Fields
 Import the [JSON file](acf-export.json) into Advanced Custom Fields.
 
 Add this to your functions.php file to add the Options interface to your WP Dashboard. You will also have Address, City, State, and Zip options that you can use elsewhere in your theme:
@@ -131,6 +132,9 @@ if( function_exists('acf_add_options_page') ) {
 }
 ?>
 ~~~~
+
+### Radio Buttons For Taxonomies
+Go to Settings --> Radio Buttons for Taxonomies from the WordPress Dashboard and check the option for "Landmark Types."
 
 Add this to your functions.php file to remove the "None" option for Radio Buttons for Taxonomies:
 ~~~~
