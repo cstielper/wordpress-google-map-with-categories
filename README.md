@@ -4,8 +4,8 @@ Follow the steps below to set up an area map that uses the Google Maps API to pl
 ## Install Required plugins
 NOTE: The included [JSON file](acf-export-landmark-info.json) to import into Advanced Custom fields is for use with the pro version of the plugin.
 
-1. [WordPress REST API (Version 2)](https://wordpress.org/plugins/rest-api/)
-2. [Advanced Custom Fields](https://www.advancedcustomfields.com/) (As of WP 4.7, this is no longer needed)
+1. [WordPress REST API (Version 2)](https://wordpress.org/plugins/rest-api/) (As of WP 4.7, this is no longer needed)
+2. [Advanced Custom Fields](https://www.advancedcustomfields.com/) 
 3. [ACF to Rest API (Version 2)](https://wordpress.org/plugins/acf-to-rest-api/)
 4. [Radio Buttons for Taxonomies](https://wordpress.org/plugins/radio-buttons-for-taxonomies/)
 
