@@ -2,7 +2,7 @@
 Follow the steps below to set up an area map that uses the Google Maps API to plot landmarks (a custom post type in WordPress) with categories (a custom taxonomy that is assigned to the custom post type) that allow you to toggle map markers on/off.
 
 ## Install Required plugins
-NOTE: The included [JSON file](acf-export-landmark-info.json) to import into Advanced Custom fields is for use with the pro version of the plugin.
+NOTE: The included [JSON file](acf-export.json) to import into Advanced Custom fields is for use with the pro version of the plugin.
 
 1. [WordPress REST API (Version 2)](https://wordpress.org/plugins/rest-api/) (As of WP 4.7, this is no longer needed)
 2. [Advanced Custom Fields](https://www.advancedcustomfields.com/) 
