@@ -169,11 +169,11 @@ if(function_exists('YOUR_FUNCTION_PREFIX_area_map')) {
 ## Javascript Implementation
 You will need to set some variables at the top of the [area-map.js](area-map.js) file:
 
-1. Add your google maps api key (**var apiKey**)
-2. Set the path to use in order to query the REST API for the "landmarks" custom post type (**var markersFeed**)
-3. Set the path to use in order to query the REST API for the "landmark_types" custom taxonomy (**var catsFeed**). If you do not want to use the category navigation, you can set "**var addCats**" to "false"
-3. Set the path to use in order to query the REST API for the static community marker options (**var locationOptionsFeed**). If you do not want to a static marker, you can set "**var addCommMarker**" to "false"
-4. Set the path to where your map markers are stored in your WordPress theme. The naming convention for the category map markers is by the taxonomy id number. So, if you had a "Landmark Type" with an id of "10," the path the javascript will output is: */THE_PATH_YOU_ENTERED/cat-10.png*. You will need to have an appropriately named icon in your directory for each "Landmark Type" that is being used. The static property marker should be placed in the same directory and named: "static-comm-marker.png".
+1. Add your google maps api key (**var apiKey**).
+2. Set the path to use in order to query the REST API for the "landmarks" custom post type (**var markersFeed**).
+3. Set the path to use in order to query the REST API for the "landmark_types" custom taxonomy (**var catsFeed**). If you do not want to use the category navigation, you can set "**var addCats**" to "false." If you would like a count of the landmarks in each category to display with the category navigation, you can set "**var catCount**" to "true."
+4. Set the path to use in order to query the REST API for the static community marker options (**var locationOptionsFeed**). If you do not want to a static marker, you can set "**var addCommMarker**" to "false"
+5. Set the path to where your map markers are stored in your WordPress theme. The naming convention for the category map markers is by the taxonomy id number. So, if you had a "Landmark Type" with an id of "10," the path the javascript will output is: */THE_PATH_YOU_ENTERED/cat-10.png*. You will need to have an appropriately named icon in your directory for each "Landmark Type" that is being used. The static property marker should be placed in the same directory and named: "static-comm-marker.png".
 
 ## Sample CSS
 A [sample SASS file](sample-styles.scss) has been provided to get you started.
