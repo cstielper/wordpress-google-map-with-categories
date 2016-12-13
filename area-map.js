@@ -8,8 +8,9 @@ var apiKey = 'ADD_YOUR_GOOGLE_MAPS_API_KEY';
 // Paths to JSON data
 var markersFeed = '/THE_PATH_YOU_WANT_TO_USE/wp-json/wp/v2/area_landmarks?per_page=100';
 
-// Specify whether you want to add category controls for landmarks to the map (true/false).
+// Specify whether you want to add category controls for landmarks to the map (true/false) and whether you want to add the number of landmarks in a category to the controls (true/false).
 var addCats = true;
+var catCount = true;
 var catsFeed = '/THE_PATH_YOU_WANT_TO_USE/wp-json/wp/v2/landmark_types';
 
 // Specify whether you want to add a static community marker to the map (true/false).
@@ -239,7 +240,7 @@ function buildCats(data, map) {
 			listItem.classList.add(data[i].slug);
 			var listItemHref = document.createElement('a');
 			listItemHref.href = '#';
-			listItemHref.innerText = data[i].name;
+			listItemHref.innerHTML = !catCount ? data[i].name : '<span class="count">' + data[i].count + '</span>' + data[i].name;
 			listItem.appendChild(listItemHref);
 			catNavUl.appendChild(listItem);
 
