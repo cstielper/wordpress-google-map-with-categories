@@ -140,7 +140,7 @@ Add this to your functions.php file to remove the "None" option for Radio Button
 ~~~~
 <?php
 // Remove option for no type from radio button for taxonomies plugin
-add_filter('radio-buttons-for-taxonomies-no-term-landmark_types', '__return_FALSE' );
+add_filter('radio_buttons_for_taxonomies_no_term_landmark_types', '__return_FALSE' );
 ?>
 ~~~~
 
