@@ -1,4 +1,7 @@
 # Wordpress Google Map With Categories
+
+**NOTE: This repository is no longer maintained. It has been rolled into a [new one](https://github.com/cstielper/wordpress-acf-google-map).**
+
 Follow the steps below to set up an area map that uses the Google Maps API to plot landmarks (a custom post type in WordPress) with categories (a custom taxonomy that is assigned to the custom post type) that allow you to toggle map markers on/off.
 
 ## Install Required Plugins
